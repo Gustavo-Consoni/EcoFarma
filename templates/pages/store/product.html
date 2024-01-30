@@ -1,0 +1,100 @@
+{% extends 'layouts/store.html' %}
+
+{% load static %}
+
+{% block 'title' %} {{name}} {% endblock %}
+
+{% block 'head' %}
+    <script defer src="{% static 'js/store/product.js' %}"></script>
+{% endblock %}
+
+{% block 'body' %}
+<div class="bg-gray-50" x-data="product">
+
+    {% include 'components/navbar.html' %}
+    {% include 'components/cart.html' %}
+
+    <div class="w-[90%] mx-auto py-12 space-y-12">
+
+        <div class="flex space-x-24">
+
+            <div class="w-1/2 space-y-12">
+                <img class="w-80 rounded shadow border mx-auto" :src="product.image">
+                <div class="flex items-center justify-between">
+                    <img class="w-40 rounded shadow border shrink-0" :src="product.image">
+                    <img class="w-40 rounded shadow border shrink-0" :src="product.image">
+                    <img class="w-40 rounded shadow border shrink-0" :src="product.image">
+                </div>
+            </div>
+    
+            <div class="w-1/2 space-y-8">
+    
+                <!-- Descrição -->
+                <div class="space-y-2">
+                    <p class="text-2xl font-semibold" x-text="product.name"></p>
+                    <p x-text="product.brand"></p>
+                    <p x-text="product.quantity + ' unidades'"></p>
+                    <p class="font-semibold text-sm">Vendido e entregue por Descontão Farma</p>
+                </div>
+    
+                <!-- Avaliação -->
+                <div class="flex items-end text-sm text-[#FFC240] font-semibold space-x-2">
+                    <div>
+                        <p>4,5 de 5</p>
+                        <p>+ + + + -</p>
+                    </div>
+                    <p>( 1 )</p>
+                </div>
+    
+                <!-- Beneficios -->
+                <ul class="list-disc ml-5">
+                    <li>Cuidado diário para as peles secas e muito secas.</li>
+                    <li>Textura bálsamo fluida não oleosa.</li>
+                    <li>Indicado para rosto e corpo.</li>
+                    <li>Restaura a barreira da pele.</li>
+                    <li>Hidrata por até 48 horas.</li>
+                </ul>
+    
+                <!-- Preço -->
+                <div class="flex items-end space-x-12">
+                    <div>
+                        <p class="text-lg line-through" x-text="'R$ ' + 79"></p>
+                        <p class="text-3xl font-semibold" x-text="'R$ ' + product.price"></p>
+                    </div>
+                </div>
+                
+                <!-- Botão de Compra -->
+                <button class="flex items-center justify-center w-full text-white text-semibold rounded shadow bg-gray-800 hover:bg-gray-900 duration-300 p-3 space-x-2" @click="addToCart(product)">
+                    <svg class="w-6 h-6 shrink-0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M2.25 2.25a.75.75 0 000 1.5h1.386c.17 0 .318.114.362.278l2.558 9.592a3.752 3.752 0 00-2.806 3.63c0 .414.336.75.75.75h15.75a.75.75 0 000-1.5H5.378A2.25 2.25 0 017.5 15h11.218a.75.75 0 00.674-.421 60.358 60.358 0 002.96-7.228.75.75 0 00-.525-.965A60.864 60.864 0 005.68 4.509l-.232-.867A1.875 1.875 0 003.636 2.25H2.25zM3.75 20.25a1.5 1.5 0 113 0 1.5 1.5 0 01-3 0zM16.5 20.25a1.5 1.5 0 113 0 1.5 1.5 0 01-3 0z" />
+                    </svg>
+                    <p>Comprar</p>
+                </button>
+    
+                <!-- Favoritos -->
+                <div class="flex justify-center">
+                    <button class="font-medium underline">Adicionar aos favoritos</button>
+                </div>
+                
+                <!-- Frete -->
+                <div class="flex items-center justify-between">
+                    <p>Calcular Frete</p>
+                    <form class="space-x-4" action="">
+                        <label for="">Cep:</label>
+                        <input class="outline-none border rounded shadow bg-white p-2" type="text">
+                        <button class="text-white rounded shadow bg-gray-800 hover:bg-gray-900 px-4 py-2" type="submit">Calcular</button>
+                    </form>
+                </div>
+    
+            </div>
+    
+        </div>
+
+        {% include 'pages/store/partials/recommendation.html' with text='Quem viu este produto também viu' %}
+        {% include 'pages/store/partials/recommendation.html' with text='Quem comprou este produto também viu' %}
+
+    </div>
+
+</div>
+
+{% endblock %}

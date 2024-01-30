@@ -1,0 +1,35 @@
+{% extends 'layouts/base.html' %}
+
+{% block 'body' %}
+<div class="flex items-center justify-center h-screen bg-gray-50">
+    <div class="w-[90%] max-w-md rounded-md shadow-md border bg-white">
+        <div class="relative h-40 rounded-t-md bg-gray-800">
+            <svg class="absolute bottom-0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
+                <path fill="#FFF" fill-opacity="1" d="M0,64L48,80C96,96,192,128,288,128C384,128,480,96,576,85.3C672,75,768,85,864,122.7C960,160,1056,224,1152,245.3C1248,267,1344,245,1392,234.7L1440,224L1440,640L1392,640C1344,640,0,640,0,640C1056,640,0,640,0,640C768,640,0,640,0,640C480,640,0,640,0,640C192,640,0,640,0,640L0,0"></path>
+            </svg>
+        </div>
+        <div class="p-8 sm:p-12 space-y-12">
+            <div class="space-y-6">
+                <p class="text-3xl text-center font-bold">Seja bem vindo!</p>
+                
+            </div>
+            <form class="space-y-12" action="{% url 'Login' %}" method="POST">
+                <div class="relative">
+                    <input class="peer h-10 w-full border-b-2 border-gray-300 placeholder-transparent focus:outline-none bg-white" id="email" name="email" type="email" placeholder="Usuario" required>
+                    <label class="absolute -top-3.5 left-0 text-sm text-gray-600 transition-all peer-placeholder-shown:top-2 peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-400 peer-focus:-top-3.5 peer-focus:text-sm peer-focus:text-gray-600" for="email">Email</label>
+                </div>
+                <div class="relative">
+                    <input class="peer h-10 w-full border-b-2 border-gray-300 placeholder-transparent focus:outline-none bg-white" id="password" name="password" type="password" placeholder="Senha" required>
+                    <label class="absolute -top-3.5 left-0 text-sm text-gray-600 transition-all peer-placeholder-shown:top-2 peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-400 peer-focus:-top-3.5 peer-focus:text-sm peer-focus:text-gray-600" for="password">Senha</label>
+                </div>
+                <button class="w-full text-gray-50 text-center font-bold rounded-md shadow-md bg-gray-800 hover:bg-gray-900 duration-300 p-3">Entrar</button>
+                {% csrf_token %}
+            </form>
+            <div class="flex justify-between text-sm font-bold">
+                <a class="text-blue-700" href="">Criar conta</a>
+                <a class="text-blue-700" href="">Esqueceu a senha?</a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

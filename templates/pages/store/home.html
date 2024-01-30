@@ -1,0 +1,27 @@
+{% extends 'layouts/store.html' %}
+
+{% load static %}
+
+{% block 'head' %}
+    <script defer src="https://js.stripe.com/v3/"></script>
+    <script defer src="{% static 'js/store/home.js' %}"></script>
+    <script defer src="{% static 'js/store/checkout.js' %}"></script>
+{% endblock %}
+
+{% block 'body' %}
+    <div class="bg-gray-50" x-data="home">
+        <div x-data="checkout('{{ csrf_token }}', '{{ STRIPE_PUBLIC_KEY }}')">
+
+            {% include 'components/navbar.html' %}
+            {% include 'components/cart.html' %}
+
+            <div class="w-[90%] mx-auto py-12 space-y-12">
+                <img class="w-full" src="">
+                {% include 'pages/store/partials/recommendation.html' with text='Destaque da Semana' %}
+                {% include 'pages/store/partials/recommendation.html' with text='Produtos mais Visitados' %}
+                {% include 'pages/store/partials/recommendation.html' with text='Recomendados para Você' %}
+            </div>
+            
+        </div>
+    </div>
+{% endblock %}

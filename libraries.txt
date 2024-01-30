@@ -1,0 +1,6 @@
+django
+django-rest-framework
+djang-tailwind
+pillow
+python-decouple
+stripe

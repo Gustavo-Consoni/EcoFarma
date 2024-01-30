@@ -1,0 +1,30 @@
+{% load static %}
+
+<!-- Carrossel -->
+<div class="relative space-y-6">
+
+    <!-- Titulo -->
+    <p class="text-2xl lg:text-3xl font-bold">{{ text }}</p>
+
+    <!-- Produtos -->
+    <div class="grid sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-4">
+        <template x-for="(product, index) in products">
+            <div class="flex flex-col rounded-2xl shadow-lg border bg-white">
+                <a class="py-8" :href="`produto/${product.slug}`">
+                    <img class="w-36 mx-auto" :src="product.image">
+                </a>
+                <div class="flex items-center justify-center space-x-2">
+                    <img src="{% static 'img/stars.png' %}">
+                    <p class="text-sm text-[#FFC240] font-bold" x-text="'(' + product.total_reviews + ')'"></p>
+                </div>
+                <div class="flex-1 flex flex-col justify-end text-center break-words p-4 space-y-4">
+                    <p class="font-bold" x-text="product.name"></p>
+                    <p x-text="product.brand"></p>
+                    <p class="text-3xl text-[#53C052] font-bold" x-text="'R$ ' + product.price.toString().replace('.', ',')"></p>
+                </div>
+                <button class="text-xl text-white font-bold rounded-b-2xl bg-[#53C052] p-3" @click="addToCart(product)">Comprar</button>
+            </div>
+        </template>
+    </div>
+
+</div>
